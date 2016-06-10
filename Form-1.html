@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Tangle document</title>
+
+    <!-- Tangle -->
+    <script type="text/javascript" src="Tangle.js"></script>
+    <link rel="stylesheet" href="normalize.css" type="text/css">
+    <link rel="stylesheet" href="skeleton.css" type="text/css">
+    <link rel="stylesheet" href="main.css" type="text/css">
+
+
+    <!-- TangleKit (optional) -->
+    <link rel="stylesheet" href="TangleKit/TangleKit.css" type="text/css">
+    <script type="text/javascript" src="TangleKit/mootools.js"></script>
+    <script type="text/javascript" src="TangleKit/sprintf.js"></script>
+    <script type="text/javascript" src="TangleKit/BVTouchable.js"></script>
+    <script type="text/javascript" src="TangleKit/TangleKit.js"></script>
+
+    <!-- example -->
+    
+    <script type="text/javascript">
+
+        function setUpTangle () {
+
+            var element = document.getElementById("example");
+
+            var tangle = new Tangle(element, {
+                initialize: function () {
+                    this.household = 4;
+                    this.monthlyIncome = 50;
+                },
+                update: function () {
+                    var line = 1238+(431)*(this.household-1)
+                    if (this.monthlyIncome > line){
+                        this.result = false
+                        this.output = "Your income may be too high to qualify for legal services here." 
+                        this.explanation = "For households of " + this.household + ", you need to make less than $" + line +" per month to qualify for legal aid."
+                    } else{
+                        this.result = true
+                        this.output = "Your income is probably low enough to qualify for legal services here." 
+                        this.explanation = "For households of " + this.household + ", you need to make less than $" + line +" per month to qualify for legal aid."
+
+                        
+                    }
+                }
+            });
+            
+        }
+
+    </script>
+</head>
+
+<body onload="setUpTangle();">
+
+<div class="container" id ="example">
+     <div class="row">
+            <h3>Eligibility</h3>
+    <p>
+        <label>Household Size: </label> <input type="text" placeholder="0", width="15"></input>
+    </p>
+       <p>
+        <label>Monthly Income: </label> <input type="text" placeholder="$0", width="15"></input>
+    </p>
+    <button class="button-primary">Submit</button>
+  </div>
+</div> 
+
+</body>
+</html>
